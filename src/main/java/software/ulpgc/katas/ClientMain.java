@@ -1,12 +1,14 @@
 package software.ulpgc.katas;
 
-import software.ulpgc.katas.application.ports.GreetingServicePort;
-import software.ulpgc.katas.infrastructure.adapters.http.JavaHttpGreetingAdapter;
+import software.ulpgc.katas.application.domain.FibonacciSeries;
+import software.ulpgc.katas.application.ports.FibonacciServicePort;
+import software.ulpgc.katas.infrastructure.adapters.http.JavaHttpFibonacciAdapter;
 
 public class ClientMain {
     public static void main(String[] args) {
-        GreetingServicePort service = new JavaHttpGreetingAdapter();
-        String respuesta = service.fetchGreeting("Pablo");
-        System.out.println("Respuesta recibida: " + respuesta);
+        FibonacciServicePort service = new JavaHttpFibonacciAdapter();
+        FibonacciSeries series = service.fetchSeries(8);
+        System.out.println("=== Serie de Fibonacci (" + series.count() + " elementos) ===");
+        System.out.println("Valores: " + series.values());
     }
 }
